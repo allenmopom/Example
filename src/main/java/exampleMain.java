@@ -1,3 +1,6 @@
+//Esper example found at:
+//https://coffeeonesugar.wordpress.com/2009/07/21/getting-started-with-esper-in-5-minutes/
+
 //Lib for Esper and Java
 import com.espertech.esper.client.*;
 import java.util.Random;
