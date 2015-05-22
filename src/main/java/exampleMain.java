@@ -1,7 +1,10 @@
 import com.espertech.esper.client.*;
 import java.util.Random;
 import java.util.Date;
-
+import org.apache.log4j.ConsoleAppender;
+import org.apache.log4j.SimpleLayout;
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 public class exampleMain {
 
     public static class Tick {
@@ -46,7 +49,13 @@ public class exampleMain {
 
     public static void main(String[] args) {
 
-//The Configuration is meant only as an initialization-time object.
+
+        SimpleLayout layout = new SimpleLayout();
+        ConsoleAppender appender = new ConsoleAppender(new SimpleLayout());
+        Logger.getRootLogger().addAppender(appender);
+        Logger.getRootLogger().setLevel((Level) Level.WARN);
+
+        //The Configuration is meant only as an initialization-time object.
         Configuration cepConfig = new Configuration();
         cepConfig.addEventType("StockTick", Tick.class.getName());
         EPServiceProvider cep = EPServiceProviderManager.getProvider("myCEPEngine", cepConfig);
