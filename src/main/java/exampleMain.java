@@ -1,10 +1,14 @@
+//Lib for Esper and Java
 import com.espertech.esper.client.*;
 import java.util.Random;
 import java.util.Date;
+//Lib for log4j
 import org.apache.log4j.ConsoleAppender;
 import org.apache.log4j.SimpleLayout;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
+
+
 public class exampleMain {
 
     public static class Tick {
@@ -49,7 +53,7 @@ public class exampleMain {
 
     public static void main(String[] args) {
 
-
+        //Log4J configuration - not essential
         SimpleLayout layout = new SimpleLayout();
         ConsoleAppender appender = new ConsoleAppender(new SimpleLayout());
         Logger.getRootLogger().addAppender(appender);
@@ -57,7 +61,9 @@ public class exampleMain {
 
         //The Configuration is meant only as an initialization-time object.
         Configuration cepConfig = new Configuration();
+        //We register Ticks as objects the engine will have to handle
         cepConfig.addEventType("StockTick", Tick.class.getName());
+        //We setup the engine
         EPServiceProvider cep = EPServiceProviderManager.getProvider("myCEPEngine", cepConfig);
         EPRuntime cepRT = cep.getEPRuntime();
 
