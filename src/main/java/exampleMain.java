@@ -81,9 +81,12 @@ public class exampleMain {
         EPRuntime cepRT = cep.getEPRuntime();
 
         EPAdministrator cepAdm = cep.getEPAdministrator();
-        EPStatement cepStatement = cepAdm.createEPL("select * from " +
+        /*EPStatement cepStatement = cepAdm.createEPL("select * from " +
                 "StockTick(symbol='AAPL').win:length(2) " +
-                "having avg(price) > 6.0");
+                "having avg(price) > 6.0");*/
+
+        EPStatement cepStatement = cepAdm.createEPL("select avg(price) from " +
+                "StockTick");
 
         cepStatement.addListener(new CEPListener());
 
